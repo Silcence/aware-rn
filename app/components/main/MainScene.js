@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import BaseComponent from '../common/BaseComponent';
-import TabView from './component/TabView';
+import TabView from './widgets/TabView';
 
 
 export default class MainScene extends BaseComponent{

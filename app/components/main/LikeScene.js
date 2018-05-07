@@ -15,7 +15,7 @@ import {
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import {getCommonPixel,getFontPixel} from '../../utils/PixelUtil';
 import TestScene from './TestScene';
-import ProjectTabBar from './component/ProjectTabBar';
+import ProjectTabBar from './widgets/ProjectTabBar';
 
 export default class LikeScene extends React.Component{
 

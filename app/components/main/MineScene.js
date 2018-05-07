@@ -70,10 +70,12 @@ class MineScene extends React.Component{
                             <Text style={styles.infoNum}>{this.props.projects}</Text>
                             <Text style={styles.infoTitle}>{'项目'}</Text>
                         </View>
-                        <View style={styles.infoWrap}>
+                        <TouchableOpacity
+
+                            style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.articles}</Text>
                             <Text style={styles.infoTitle}>{'文章'}</Text>
-                        </View>
+                        </TouchableOpacity>
                         <View style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.likes}</Text>
                             <Text style={styles.infoTitle}>{'点赞'}</Text>
