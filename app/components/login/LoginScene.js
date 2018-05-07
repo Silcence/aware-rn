@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         backgroundColor:FontAndColor.WHITE,
     },
     contentWrap:{
-        marginTop: getTopDistance(144),
+        marginTop: getTopDistance(93),
         marginHorizontal: getCommonPixel(32),
     },
     logoWrap:{

@@ -122,8 +122,12 @@ const styles = StyleSheet.create({
     },
     backWrap:{
         position:'absolute',
-        left:getCommonPixel(32),
-        top:getCommonPixel(22)
+        left:0,
+        top:0,
+        bottom:0,
+        paddingRight:getCommonPixel(32),
+        justifyContent:'center',
+        paddingLeft:getCommonPixel(32)
     },
     backImg:{
         height:getCommonPixel(44),
@@ -131,8 +135,12 @@ const styles = StyleSheet.create({
     },
     finishWrap:{
         position:'absolute',
-        right:getCommonPixel(32),
-        top:getCommonPixel(28),
+        right:0,
+        top:0,
+        bottom:0,
+        justifyContent:'center',
+        paddingHorizontal:getCommonPixel(32),
+        backgroundColor:'red'
     },
     finishText:{
         fontSize:getFontPixel(30),

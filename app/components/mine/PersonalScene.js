@@ -26,7 +26,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { connect } from 'react-redux';
 import { initProfile,uploadAvatar } from '../../actions/personal';
 import { resetProfile } from '../../actions/mine';
-import uploadRequest from '../../utils/UpLoadFileUtil';
 
 const back = require('../../images/back.png');
 const more = require('../../images/more.png');
@@ -75,6 +74,8 @@ class PersonalScene extends BaseComponent{
             hideBottomControls:true,
         }).then((image)=>{
             this.props.updateAvatar(image.path);
+        },(error)=>{
+
         })
     };
 
@@ -98,7 +99,10 @@ class PersonalScene extends BaseComponent{
                 <View style={styles.avatarWrap}>
                     <View style={styles.contentWrap}>
                         <Text style={styles.leftText}>{'头像'}</Text>
-                        <View style={styles.rightWrap}>
+                        <TouchableOpacity
+                            onPress={this._openImagePicker}
+                            activeOpacity={0.7}
+                            style={styles.rightWrap}>
                             <ImageBackground
                                 style={styles.avatarImg}
                                 source={avater}
@@ -108,26 +112,21 @@ class PersonalScene extends BaseComponent{
                                     source={this.props.avatar}
                                 />
                             </ImageBackground>
-                            <TouchableOpacity
-                                onPress={this._openImagePicker}
-                                activeOpacity={0.7}>
-                                <Image style={styles.moreImg} source={more}/>
-                            </TouchableOpacity>
-                        </View>
+                            <Image style={styles.moreImg} source={more}/>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
                 <View style={styles.nickWrap}>
                     <View style={styles.contentWrap}>
                         <Text style={styles.leftText}>{'昵称'}</Text>
-                        <View style={styles.rightWrap}>
+                        <TouchableOpacity
+                            onPress={()=>{this.toNextPage('EditNameScene',{name:this.props.name})}}
+                            activeOpacity={0.7}
+                            style={styles.rightWrap}>
                             <Text style={styles.nickText}>{this.props.name}</Text>
-                            <TouchableOpacity
-                                onPress={()=>{this.toNextPage('EditNameScene',{name:this.props.name})}}
-                                activeOpacity={0.7}>
-                                <Image style={styles.moreImg} source={more}/>
-                            </TouchableOpacity>
-                        </View>
+                            <Image style={styles.moreImg} source={more}/>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
@@ -174,8 +173,12 @@ const styles = StyleSheet.create({
     },
     backWrap:{
         position:'absolute',
-        left:getCommonPixel(32),
-        top:getCommonPixel(22),
+        left:0,
+        top:0,
+        bottom:0,
+        paddingRight:getCommonPixel(32),
+        justifyContent:'center',
+        paddingLeft:getCommonPixel(32)
     },
     backImg:{
         height:getCommonPixel(44),
@@ -202,7 +205,8 @@ const styles = StyleSheet.create({
     },
     rightWrap:{
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        paddingVertical:getCommonPixel(15)
     },
     avatarImg:{
         height: getCommonPixel(44),

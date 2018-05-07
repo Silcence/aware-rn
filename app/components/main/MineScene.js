@@ -47,6 +47,7 @@ class MineScene extends React.Component{
                             <Image style={styles.avatarImg} source={this.props.avatar}/>
                         </ImageBackground>
                         <TouchableOpacity
+                            disabled={this.props.isLogin}
                             onPress={()=>{this.props.toLogin();}}
                             style={styles.loginWrap}>
                             <Text style={styles.loginText}>{this.props.name}</Text>
@@ -55,7 +56,8 @@ class MineScene extends React.Component{
                         {
                             this.props.isLogin &&
                             <TouchableOpacity
-                                activeOpacity={0.7}
+                                style={styles.zoomTouch}
+                                activeOpacity={0.6}
                                 onPress={()=>{this.props.toNextPage('PersonalScene',{
                                     avatar:this.props.avatar,
                                     name:this.props.name
@@ -85,18 +87,17 @@ class MineScene extends React.Component{
                 <View style={styles.moneyWrap}>
                     <View style={styles.balanceWrap}>
                         <Text style={styles.balanceTitle}>{'余额'}</Text>
-                        <View style={styles.walletWrap}>
+                        <TouchableOpacity
+                            disabled={this.props.isLogin}
+                            style={styles.walletWrap}
+                                          activeOpacity={1}
+                                          onPress={()=>{}}>
                             <Text style={styles.balanceTitle}>{this.props.balance}</Text>
                             {
                                 this.props.isLogin &&
-                                <TouchableOpacity
-                                    activeOpacity={0.7}
-                                    onPress={()=>{}}
-                                >
-                                    <Image style={styles.walletImg} source={more}/>
-                                </TouchableOpacity>
+                                <Image style={styles.walletImg} source={more}/>
                             }
-                        </View>
+                        </TouchableOpacity>
 
                     </View>
                     <View style={styles.inviteWrap}>
@@ -244,12 +245,16 @@ const styles = StyleSheet.create({
         borderRadius:getCommonPixel(30),
         justifyContent:'center',
         alignItems:'center',
-        marginTop:getCommonPixel(86),
+        marginTop:getCommonPixel(90),
         backgroundColor:FontAndColor.DARK_YELLOW
     },
     btnText:{
         color:FontAndColor.WHITE,
         fontSize:getFontPixel(24)
+    },
+    zoomTouch:{
+        paddingVertical:getCommonPixel(10),
+        paddingLeft:getCommonPixel(10),
     },
 
     rewardWrap:{
@@ -258,7 +263,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         paddingLeft:getCommonPixel(32),
-        height:getCommonPixel(110)
+        height:getCommonPixel(110),
     },
     imgWrap:{
         height:getCommonPixel(46),
