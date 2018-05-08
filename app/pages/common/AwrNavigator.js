@@ -12,12 +12,14 @@ import LoginScene from '../login/LoginScene';
 import MainScene from '../main/MainScene';
 import PersonalScene from '../mine/PersonalScene';
 import EditNameScene from '../mine/EditNameScene';
+import ListMineItemScene from '../mine/ListMineItemScene';
 
 const AwrNavigator = StackNavigator({
     LoginScene: {screen: LoginScene},
     MainScene: {screen: MainScene},
     PersonalScene: {screen: PersonalScene},
-    EditNameScene: {screen: EditNameScene}
+    EditNameScene: {screen: EditNameScene},
+    ListMineItemScene: {screen: ListMineItemScene}
 },{
     initialRouteName:'MainScene',
     mode:'modal',

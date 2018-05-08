@@ -26,9 +26,9 @@ import Swiper from 'react-native-swiper';
 import Toast from '../common/Toast';
 import I18N from '../../language/i18n';
 
-import CarouselDot from './widgets/CarouselDot';
-import HotProjectItem from './widgets/HotProjectItem';
-import HotArticleItem from './widgets/HotArticleItem';
+import CarouselDot from './component/CarouselDot';
+import HotProjectItem from './component/HotProjectItem';
+import HotArticleItem from './component/HotArticleItem';
 import * as urls from "../../constant/urls";
 import request from "../../utils/RequestUtil";
 const moreImg = require('../../images/more.png');

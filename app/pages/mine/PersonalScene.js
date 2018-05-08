@@ -22,7 +22,7 @@ import {getTopDistance,getCommonPixel,getFontPixel} from "../../utils/PixelUtil"
 import {getCacheItem,removeCacheItem} from '../../utils/StorageUtil';
 import {LOGIN_SUC} from '../../constant/StorageKeyNames';
 import ImagePicker from 'react-native-image-crop-picker';
-import SelectImagePop from './widgets/SelectImagePop';
+import SelectImagePop from './component/SelectImagePop';
 
 import { connect } from 'react-redux';
 import { initProfile,uploadAvatar } from '../../actions/personal';

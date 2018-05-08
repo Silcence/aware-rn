@@ -37,3 +37,18 @@ export const INDEX = BASEURL + "index";
  * 个人资料
  */
 export const USER_PROFILE = BASEURL + "user/profile";
+
+/**
+ * 我的文章
+ */
+export const USER_ARTICLES = BASEURL + "user/articles";
+
+/**
+ * 我的点赞
+ */
+export const USER_LIKES = BASEURL + "user/likes";
+
+/**
+ * 我的项目
+ */
+export const USER_Following = BASEURL + "user/following";

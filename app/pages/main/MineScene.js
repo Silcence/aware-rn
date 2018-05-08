@@ -73,7 +73,10 @@ class MineScene extends React.Component{
                             <Text style={styles.infoTitle}>{'项目'}</Text>
                         </View>
                         <TouchableOpacity
-
+                            activeOpacity={0.6}
+                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
+                                type:'article',
+                            });}}
                             style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.articles}</Text>
                             <Text style={styles.infoTitle}>{'文章'}</Text>
@@ -172,7 +175,6 @@ const styles = StyleSheet.create({
         fontSize: getFontPixel(40),
         color: FontAndColor.FONT_COLOR2
     },
-
     countWrap:{
         flexDirection:'row',
         alignItems:'center',
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
         marginBottom: getCommonPixel(30)
     },
     infoWrap:{
-        alignItems:'center'
+        alignItems:'center',
     },
     infoNum:{
         fontSize:getFontPixel(32),

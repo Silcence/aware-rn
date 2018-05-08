@@ -9,7 +9,7 @@
 import React from 'react';
 
 import { Provider} from 'react-redux';
-import App from './components/app';
+import App from './pages/app';
 import store from './store/store';
 
 export default class root extends React.Component {

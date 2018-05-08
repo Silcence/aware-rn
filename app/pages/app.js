@@ -13,7 +13,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { isIOS } from '../utils/DeviceInfo';
-import AwrNavigator from '../components/common/AwrNavigator';
+import AwrNavigator from './/common/AwrNavigator';
 
 export default class app extends React.Component {
 
