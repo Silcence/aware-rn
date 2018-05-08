@@ -13,7 +13,8 @@ import {
     Image,
     StyleSheet,
     TouchableOpacity,
-    FlatList
+    FlatList,
+    RefreshControl
 }from 'react-native';
 
 import BaseComponent from '../common/BaseComponent';
@@ -22,6 +23,8 @@ import * as FontAndColor from "../../constant/FontAndColor";
 import request from '../../utils/RequestUtil';
 import * as urls from '../../constant/urls';
 import ArticleItem from './component/ArticleItem';
+import ProjectItem from './component/ProjectItem';
+import ListFooterComponent from './component/ListFooterComponent';
 
 const back = require('../../images/back.png');
 
@@ -31,72 +34,120 @@ export default class ListMineItemScene extends BaseComponent{
     constructor(props){
         super(props);
 
+        this.type = this.props.navigation.state.params.type;
+        this.title = '';
+        if(this.type === 'article'){
+            this.title = '我的文章';
+        }else if(this.type === 'like'){
+            this.title = '我的点赞';
+        }else if(this.type === 'project'){
+            this.title = '我的项目';
+        }
+        this.current_page = 1;
+        this.last_page = 1;
+
         this.state = {
             viewData: [],
             refreshing: false,
-            firstEntry: true,
+            loadMoreState:'1',
         };
 
-        this.current_page = 1;
-        this.last_page = 1;
     }
 
-    didMountFinish = ()=>{
-        request(urls.USER_ARTICLES,'get',{page:this.current_page})
+    _getListData = ()=>{
+
+        let url = '';
+        if(this.type === 'article'){
+            url = urls.USER_ARTICLES
+        }else if(this.type === 'like'){
+            url = urls.USER_LIKES
+        }else if(this.type === 'project'){
+            url = urls.USER_Following
+        }
+
+        request(url,'get',{page:this.current_page})
             .then(
                 (response)=>{
 
                     this.current_page = response.data.meta.current_page;
                     this.last_page = response.data.meta.last_page;
-                    console.log('rrrrr1111',response);
                     this.setState({
                         viewData:response.data.list,
-                        refreshing:false
+                        refreshing:false,
+                        loadMoreState:this.current_page === this.last_page ? '1' :'0',
                     });
 
                 },
                 (error)=>{
 
                 }
-        );
+            );
+    };
+
+    _getEndData = ()=>{
+
+        let url = '';
+        if(this.type === 'article'){
+            url = urls.USER_ARTICLES
+        }else if(this.type === 'like'){
+            url = urls.USER_LIKES
+        }else if(this.type === 'project'){
+            url = urls.USER_Following
+        }
+
+        request(url,'get',{page:this.current_page})
+            .then(
+                (response)=>{
+
+                    this.current_page = response.data.meta.current_page;
+                    this.last_page = response.data.meta.last_page;
+                    this.setState({
+                        viewData:this.state.viewData.concat(response.data.list),
+                        refreshing:false,
+                        loadMoreState:this.current_page === this.last_page ? '1' :'0',
+                    });
+
+                },
+                (error)=>{
+
+                }
+            );
+    };
+
+    didMountFinish = ()=>{
+        this._getListData();
     };
 
     renderItem = ({item}) => {
 
-        return(
-            <ArticleItem item={item} />
+        if(this.type === 'article'){
+            return(
+                <ArticleItem item={item} />
+            );
+        }else if(this.type === 'like'){
+            return(
+                <ArticleItem item={item} />
+            );
+        }else if(this.type === 'project'){
+            return(
+                <ProjectItem item={item} />
+            );
+        }
 
-        );
     };
 
     _keyExtractor = (item, index) => index;
 
     _renderRefresh = () =>{
 
-        request(urls.USER_ARTICLES,'get',{page:1}).then(
-            (response)=>{
-                console.log('rrrrr1111',response);
-            },
-            (error)=>{
-
-            }
-        );
-
         this.setState({
             refreshing:true
         },()=>{
-            let vd = [];
-            for(let i = 0; i < 12; i++){
-                vd.push({
-                    name:i+'_BTC_' + this.flag
-                })
-            }
-
-            this.setState({
-                viewData:vd,
-                refreshing:false
-            });
+            this.current_page = 1;
+            this.last_page = 1;
+            this._getListData();
         });
+
     };
 
     _onEndReached = ()=>{
@@ -104,10 +155,16 @@ export default class ListMineItemScene extends BaseComponent{
         if(this.current_page === this.last_page){
 
         }else{
-
+            this.current_page++;
+            this._getEndData();
         }
+    };
 
-
+    _renderFootComponent = ()=>{
+        if(this.state.loadMoreState === '0'){
+            return(<ListFooterComponent info={'加载更多.....'}/>)
+        }
+        return(<ListFooterComponent info={'我是有底线的'}/>)
     };
 
     render(){
@@ -115,7 +172,7 @@ export default class ListMineItemScene extends BaseComponent{
             <View style={styles.container}>
                 <View style={styles.NavitatonWrap}>
                     <View style={styles.titleWrap}>
-                        <Text style={styles.titleText}>{'我的文章'}</Text>
+                        <Text style={styles.titleText}>{this.title}</Text>
                         <TouchableOpacity
                             style={styles.backWrap}
                             activeOpacity={0.7}
@@ -127,19 +184,25 @@ export default class ListMineItemScene extends BaseComponent{
                 </View>
 
                 <FlatList
+                    style={styles.flexWrap}
                     data={this.state.viewData}
                     renderItem={this.renderItem}
                     keyExtractor={this._keyExtractor}
 
-                    refreshing={this.state.refreshing}
-                    onRefresh={this._renderRefresh}
-
-                    onEndReachedThreshold={0.5}
+                    onEndReachedThreshold={0.1}
                     onEndReached={this._onEndReached}
 
                     initialNumToRender={5}
 
-                    ListFooterComponent
+                    ListFooterComponent={this._renderFootComponent}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._renderRefresh}
+                            tintColor={[FontAndColor.DARK_YELLOW]}
+                            colors={[FontAndColor.DARK_YELLOW]}
+                        />
+                    }
                 />
             </View>
         );
@@ -177,4 +240,7 @@ const styles = StyleSheet.create({
         height:getCommonPixel(44),
         width:getCommonPixel(44)
     },
+    flexWrap:{
+        flex:1,
+    }
 });

@@ -16,7 +16,7 @@ import {
 }from 'react-native';
 
 import {getCommonPixel,getFontPixel} from '../../../utils/PixelUtil';
-import {deviceWidth} from '../../../utils/DeviceInfo';
+import {deviceWidth,deviceHeight} from '../../../utils/DeviceInfo';
 import * as FontAndColor from '../../../constant/FontAndColor';
 
 export default class SelectImagePop extends React.Component{

@@ -68,10 +68,15 @@ class MineScene extends React.Component{
                         }
                     </View>
                     <View style={styles.countWrap}>
-                        <View style={styles.infoWrap}>
+                        <TouchableOpacity
+                            activeOpacity={0.6}
+                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
+                                type:'project',
+                            });}}
+                            style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.projects}</Text>
                             <Text style={styles.infoTitle}>{'项目'}</Text>
-                        </View>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.6}
                             onPress={()=>{this.props.toNextPage('ListMineItemScene',{
@@ -81,10 +86,15 @@ class MineScene extends React.Component{
                             <Text style={styles.infoNum}>{this.props.articles}</Text>
                             <Text style={styles.infoTitle}>{'文章'}</Text>
                         </TouchableOpacity>
-                        <View style={styles.infoWrap}>
+                        <TouchableOpacity
+                            activeOpacity={0.6}
+                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
+                                type:'like',
+                            });}}
+                            style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.likes}</Text>
                             <Text style={styles.infoTitle}>{'点赞'}</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.moneyWrap}>

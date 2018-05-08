@@ -16,6 +16,7 @@ import {
 import {getCommonPixel,getFontPixel} from "../../../utils/PixelUtil";
 import * as FontAndColor from "../../../constant/FontAndColor";
 
+const repost = require('../../../images/repost.png');
 const find = require('../../../images/find.png');
 const heart = require('../../../images/heart.png');
 
@@ -37,36 +38,53 @@ export default class ArticleItem extends React.Component{
 
         return(
             <View style={styles.container}>
-                <Text style={styles.titleWrap}>{title}</Text>
-                <View style={styles.infoWrap}>
-                    <View style={styles.projectWrap}>
-                        <Text
-                            ellipsizeMode='tail'
-                            numberOfLines={1}
-                            style={styles.projectText}>{item.project}</Text>
-                    </View>
-                    <View style={styles.readWrap}>
-                        <Image style={styles.repostImg} source={find}/>
-                        <Text style={styles.repostText}>{read}</Text>
-                    </View>
-                    <View style={styles.readWrap}>
-                        <Image style={styles.repostImg} source={heart}/>
-                        <Text style={styles.repostText}>{like}</Text>
+                <View style={styles.wrap}>
+                    <Text style={styles.titleWrap}>{title}</Text>
+                    <View style={styles.infoWrap}>
+                        <View style={styles.projectWrap}>
+                            <Text
+                                ellipsizeMode='tail'
+                                numberOfLines={1}
+                                style={styles.projectText}>{item.project}</Text>
+                        </View>
+                        {
+                            item.author &&
+                            <View style={styles.repostWrap}>
+                                <Image style={styles.repostImg} source={repost}/>
+                                <Text
+                                    ellipsizeMode='tail'
+                                    numberOfLines={1}
+                                    style={styles.repostText}>{item.author}</Text>
+                            </View>
+                        }
+                        <View style={styles.readWrap}>
+                            <Image style={styles.repostImg} source={find}/>
+                            <Text style={styles.repostText}>{read}</Text>
+                        </View>
+                        <View style={styles.readWrap}>
+                            <Image style={styles.repostImg} source={heart}/>
+                            <Text style={styles.repostText}>{like}</Text>
+                        </View>
                     </View>
                 </View>
+
             </View>
+
         );
     }
 }
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
         backgroundColor: FontAndColor.WHITE,
+        paddingHorizontal:getCommonPixel(32),
+    },
+    wrap:{
+        flex:1,
         borderTopWidth: getCommonPixel(2),
         borderTopColor: FontAndColor.BORDER_COLOR,
         height:getCommonPixel(166),
-        justifyContent:'center'
+        justifyContent:'center',
     },
     titleWrap:{
         color: FontAndColor.FONT_COLOR6,
