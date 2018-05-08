@@ -22,6 +22,7 @@ import {getTopDistance,getCommonPixel,getFontPixel} from "../../utils/PixelUtil"
 import {getCacheItem,removeCacheItem} from '../../utils/StorageUtil';
 import {LOGIN_SUC} from '../../constant/StorageKeyNames';
 import ImagePicker from 'react-native-image-crop-picker';
+import SelectImagePop from './widgets/SelectImagePop';
 
 import { connect } from 'react-redux';
 import { initProfile,uploadAvatar } from '../../actions/personal';
@@ -67,16 +68,35 @@ class PersonalScene extends BaseComponent{
     };
 
     _openImagePicker = ()=>{
-        ImagePicker.openPicker({
-            width:240,
-            height:240,
-            cropping:true,
-            hideBottomControls:true,
-        }).then((image)=>{
-            this.props.updateAvatar(image.path);
-        },(error)=>{
+        this.imgRef.show();
+    };
 
-        })
+    _onTypeClick = (type)=>{
+        if(type === 1){
+            //拍照
+            ImagePicker.openCamera({
+                width:240,
+                height:240,
+                cropping:true,
+                hideBottomControls:true,
+            }).then((image)=>{
+                this.props.updateAvatar(image.path);
+            },(error)=>{
+
+            })
+        }else if(type === 2){
+            //相册
+            ImagePicker.openPicker({
+                width:240,
+                height:240,
+                cropping:true,
+                hideBottomControls:true,
+            }).then((image)=>{
+                this.props.updateAvatar(image.path);
+            },(error)=>{
+
+            })
+        }
     };
 
     render(){
@@ -147,6 +167,7 @@ class PersonalScene extends BaseComponent{
                 >
                     <Text style={styles.quitText}>{'退出当前账号'}</Text>
                 </TouchableOpacity>
+                <SelectImagePop ref={(ref)=>{this.imgRef = ref;}} onTypeClick={this._onTypeClick}/>
             </View>
         );
     }

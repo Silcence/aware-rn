@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
         bottom:0,
         justifyContent:'center',
         paddingHorizontal:getCommonPixel(32),
-        backgroundColor:'red'
     },
     finishText:{
         fontSize:getFontPixel(30),
