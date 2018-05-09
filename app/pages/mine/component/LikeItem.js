@@ -1,7 +1,7 @@
 /**
  * Copyright © 2018年 AWARE. All rights reserved.
  *
- * 文章ITEM
+ * 点赞Item
  * Created by CoderR.
  */
 'use strict';
@@ -20,7 +20,7 @@ const repost = require('../../../images/repost.png');
 const find = require('../../../images/find.png');
 const heart = require('../../../images/heart.png');
 
-export default class ArticleItem extends React.Component{
+export default class LikeItem extends React.Component{
 
     shouldComponentUpdate(nextProps,nextState,nextContext){
         if(this.props.item.id === nextProps.id){
@@ -38,11 +38,7 @@ export default class ArticleItem extends React.Component{
 
         return(
             <View style={styles.container}>
-                <View style={styles.statusWrap}>
-                    <Text style={styles.statusText}>{'审核中'}</Text>
-                    <Text style={styles.statusText}>{'2018-04-16'}</Text>
-                </View>
-                <View style={styles.middleWrap}>
+                <View style={styles.wrap}>
                     <Text style={styles.titleWrap}>{title}</Text>
                     <View style={styles.infoWrap}>
                         <View style={styles.projectWrap}>
@@ -71,8 +67,7 @@ export default class ArticleItem extends React.Component{
                         </View>
                     </View>
                 </View>
-                <Text style={styles.refuseText}>{'拒绝理由：内容与板块不符'}</Text>
-                <View style={styles.borderWrap} />
+
             </View>
 
         );
@@ -81,22 +76,15 @@ export default class ArticleItem extends React.Component{
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
         backgroundColor: FontAndColor.WHITE,
+        paddingHorizontal:getCommonPixel(32),
     },
-    statusWrap:{
-        margin:getCommonPixel(32),
-        flexDirection:'row',
-        justifyContent:'space-between'
-    },
-    statusText:{
-        fontSize: getFontPixel(24),
-        color:FontAndColor.FONT_COLOR1,
-    },
-    middleWrap:{
-        backgroundColor:FontAndColor.SHADOW_WHITE,
-        padding:getCommonPixel(32),
-        marginBottom:getCommonPixel(32)
+    wrap:{
+        flex:1,
+        borderTopWidth: getCommonPixel(2),
+        borderTopColor: FontAndColor.BORDER_COLOR,
+        height:getCommonPixel(166),
+        justifyContent:'center',
     },
     titleWrap:{
         color: FontAndColor.FONT_COLOR6,
@@ -146,18 +134,6 @@ const styles = StyleSheet.create({
         height: getCommonPixel(30),
         width: getCommonPixel(30),
         marginRight:getCommonPixel(8)
-    },
-    refuseText:{
-        marginHorizontal:getCommonPixel(32),
-        marginBottom:getCommonPixel(24),
-        color:FontAndColor.DARK_YELLOW,
-        fontSize:getFontPixel(24)
-    },
-
-    borderWrap:{
-        marginLeft:getCommonPixel(32),
-        borderBottomWidth:getCommonPixel(2),
-        borderBottomColor:FontAndColor.BORDER_COLOR
     },
 
 });

@@ -79,7 +79,7 @@ class MineScene extends React.Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.6}
-                            onPress={()=>{this.props.toNextPage('FollowingListScene',{
+                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
                                 type:'article',
                             });}}
                             style={styles.infoWrap}>
@@ -94,6 +94,15 @@ class MineScene extends React.Component{
                             style={styles.infoWrap}>
                             <Text style={styles.infoNum}>{this.props.likes}</Text>
                             <Text style={styles.infoTitle}>{'点赞'}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.6}
+                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
+                                type:'like',
+                            });}}
+                            style={styles.infoWrap}>
+                            <Text style={styles.infoNum}>{0}</Text>
+                            <Text style={styles.infoTitle}>{'徒弟'}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

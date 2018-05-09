@@ -24,6 +24,7 @@ import request from '../../utils/RequestUtil';
 import * as urls from '../../constant/urls';
 import ArticleItem from './component/ArticleItem';
 import ProjectItem from './component/ProjectItem';
+import LikeItem from './component/LikeItem';
 import ListFooterComponent from './component/ListFooterComponent';
 
 const back = require('../../images/back.png');
@@ -126,7 +127,7 @@ export default class ListMineItemScene extends BaseComponent{
             );
         }else if(this.type === 'like'){
             return(
-                <ArticleItem item={item} />
+                <LikeItem item={item} />
             );
         }else if(this.type === 'project'){
             return(

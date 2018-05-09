@@ -16,6 +16,7 @@ export const UP_GREEN = '#2DC600';
 export const SAME_GREY = '#ACACAC';
 export const DOWN_RED = '#C42729';
 export const BG_COLOR = '#EFF3FA';
+export const SHADOW_WHITE = '#F9F9F9';
 
 export const FONT_COLOR1 = '#666666';
 export const FONT_COLOR2 = '#333333';
