@@ -1,8 +1,8 @@
 /**
  * Copyright © 2018年 AWARE. All rights reserved.
  *
- * 项目TABS
- * Created by CoderR on 2018/4/28.
+ * 文章TAB
+ * Created by CoderR.
  */
 'use strict';
 
@@ -17,7 +17,7 @@ import {
 
 import {getCommonPixel,getFontPixel} from '../../../utils/PixelUtil';
 
-export default class ProjectTabBar extends React.Component{
+export default class ArticleTabBar extends React.Component{
 
     renderTab(name, page, isTabActive, onPressHandler) {
         const activeTextColor = '#F1A853';
@@ -42,8 +42,8 @@ export default class ProjectTabBar extends React.Component{
         const numberOfTabs = this.props.tabs.length;
         const tabUnderlineStyle = {
             position: 'absolute',
-            left:containerWidth / numberOfTabs/3,
-            width: containerWidth / numberOfTabs/3,
+            left:containerWidth / numberOfTabs/2.5,
+            width: containerWidth / numberOfTabs/5,
             height: getCommonPixel(6),
             backgroundColor: '#F1A853',
             bottom: 0,
@@ -62,7 +62,7 @@ export default class ProjectTabBar extends React.Component{
                 <Animated.View style={[
                     tabUnderlineStyle,
                     { transform:[
-                        {translateX}
+                            {translateX}
                         ]
                     }, this.props.underlineStyle,
                 ]} />

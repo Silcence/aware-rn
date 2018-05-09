@@ -46,11 +46,11 @@ export default class HotArticleItem extends React.Component{
                             style={styles.repostText}>{item.author}</Text>
                     </View>
                     <View style={styles.readWrap}>
-                        <Image style={styles.repostImg} source={find}/>
+                        <Image style={styles.readImg} source={find}/>
                         <Text style={styles.repostText}>{read}</Text>
                     </View>
                     <View style={styles.readWrap}>
-                        <Image style={styles.repostImg} source={heart}/>
+                        <Image style={styles.readImg} source={heart}/>
                         <Text style={styles.repostText}>{like}</Text>
                     </View>
                 </View>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     projectWrap:{
         flexDirection:'row',
         alignItems:'center',
-        width:getCommonPixel(92),
+        width:getCommonPixel(135),
     },
     projectText:{
         borderWidth: StyleSheet.hairlineWidth,
@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
     repostWrap:{
         flexDirection:'row',
         alignItems:'center',
-        width:getCommonPixel(185)
+        width:getCommonPixel(270)
     },
     repostImg:{
         height: getCommonPixel(30),
         width: getCommonPixel(30),
-        marginRight:getCommonPixel(8)
+        marginRight:getCommonPixel(2)
     },
     repostText:{
         color: FontAndColor.FONT_COLOR3,
@@ -111,6 +111,11 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         width:getCommonPixel(121)
+    },
+    readImg:{
+        height: getCommonPixel(30),
+        width: getCommonPixel(30),
+        marginRight:getCommonPixel(8)
     },
 
 });

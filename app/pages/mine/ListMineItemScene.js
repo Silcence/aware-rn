@@ -1,7 +1,7 @@
 /**
  * Copyright © 2018年 AWARE. All rights reserved.
  *
- * 项目、文章、点赞列表
+ * 文章、点赞列表
  * Created by CoderR.
  */
 'use strict';

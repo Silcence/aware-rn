@@ -79,7 +79,7 @@ class MineScene extends React.Component{
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.6}
-                            onPress={()=>{this.props.toNextPage('ListMineItemScene',{
+                            onPress={()=>{this.props.toNextPage('FollowingListScene',{
                                 type:'article',
                             });}}
                             style={styles.infoWrap}>

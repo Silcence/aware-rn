@@ -51,11 +51,12 @@ export default class BaseComponent extends React.Component{
 
     //返回上一页
     backPage = () => {
-        const { dispatch } = this.props.navigation;
-        const backAction = NavigationActions.back({
-            key: null
-        });
-        dispatch(backAction);
+        // const { dispatch } = this.props.navigation;
+        // const backAction = NavigationActions.back({
+        //     key: null
+        // });
+        // dispatch(backAction);
+        this.props.navigation.goBack();
     };
 
 
